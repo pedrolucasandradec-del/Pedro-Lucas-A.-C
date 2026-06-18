@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MundoPlastificado — Ação pelo Clima</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde-escuro: #1a7a4a;
+    --verde-medio: #2ebd72;
+    --verde-claro: #a8edca;
+    --verde-palido: #e6f9f0;
+    --azul-escuro: #1565a8;
+    --azul-medio: #2196f3;
+    --azul-claro: #90caf9;
+    --azul-palido: #e3f2fd;
+    --fundo: #eef7fc;
+    --fundo2: #f0faf5;
+    --cinza-texto: #1a2e3b;
+    --cinza-muted: #5a7a8a;
+    --branco: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--cinza-texto);
+    background: var(--fundo);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(238,247,252,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--azul-claro);
+  }
+
+  .logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--verde-escuro);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--azul-medio); }
+
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav ul a {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cinza-texto);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--verde-medio); }
+
+  .nav-cta {
+    background: var(--verde-medio);
+    color: var(--branco) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.9rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--verde-escuro) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5% 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--fundo2) 0%, var(--fundo) 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    right: -8%;
+    width: 55vw;
+    height: 55vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,189,114,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 40vw;
+    height: 40vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(33,150,243,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde-escuro);
+    background: var(--verde-palido);
+    border: 2px solid var(--verde-claro);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cinza-texto);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--verde-medio);
+    position: relative;
+  }
+
+  .hero h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0; right: 0;
+    height: 4px;
+    background: var(--azul-medio);
+    border-radius: 2px;
+    opacity: 0.4;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--cinza-muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--verde-medio);
+    color: var(--branco);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+    box-shadow: 0 4px 16px rgba(46,189,114,0.3);
+  }
+  .btn-primary:hover { background: var(--verde-escuro); transform: translateY(-3px); }
+
+  .btn-secondary {
+    border: 2.5px solid var(--azul-medio);
+    color: var(--azul-medio);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--azul-medio); color: var(--branco); transform: translateY(-3px); }
+
+  .hero-visual { display: flex; flex-direction: column; gap: 1rem; position: relative; }
+
+  .hero-stat-card {
+    background: var(--branco);
+    border: 2px solid var(--verde-claro);
+    border-radius: 20px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 6px 24px rgba(46,189,114,0.12);
+    animation: floatIn 0.8s ease both;
+  }
+  .hero-stat-card:nth-child(2) { margin-left: 2.5rem; animation-delay: 0.2s; border-color: var(--azul-claro); }
+  .hero-stat-card:nth-child(3) { margin-left: 1rem; animation-delay: 0.4s; }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .stat-number { font-family: 'Baloo 2', cursive; font-size: 2.4rem; font-weight: 900; color: var(--verde-escuro); line-height: 1; }
+  .stat-number.blue { color: var(--azul-escuro); }
+  .stat-label { font-size: 0.85rem; color: var(--cinza-muted); margin-top: 0.3rem; line-height: 1.4; font-weight: 600; }
+
+  /* ─── SEÇÃO DADOS ─── */
+  .section-dados {
+    background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--azul-escuro) 100%);
+    color: var(--branco);
+    padding: 6rem 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-dados::before { content: ''; position: absolute; bottom: -20%; left: -5%; width: 40vw; height: 40vw; border-radius: 50%; background: rgba(255,255,255,0.05); pointer-events: none; }
+  .dados-header { text-align: center; max-width: 620px; margin: 0 auto 4rem; }
+  .section-eyebrow { display: inline-block; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--verde-claro); margin-bottom: 1rem; }
+  .section-title { font-family: 'Baloo 2', cursive; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+  .section-sub { font-size: 1rem; line-height: 1.7; opacity: 0.8; font-weight: 600; }
+  .dados-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+  .dado-card { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 2rem 1.5rem; text-align: center; transition: background 0.2s, transform 0.2s; }
+  .dado-card:hover { background: rgba(255,255,255,0.18); transform: translateY(-5px); }
+  .dado-num { font-family: 'Baloo 2', cursive; font-size: 3rem; font-weight: 900; color: var(--verde-claro); line-height: 1; margin-bottom: 0.5rem; }
+  .dado-num.azul { color: var(--azul-claro); }
+  .dado-desc { font-size: 0.9rem; line-height: 1.6; opacity: 0.85; font-weight: 600; }
+
+  /* ─── SEÇÃO DICAS ─── */
+  .section-dicas { padding: 7rem 5%; background: var(--fundo); }
+  .dicas-header { text-align: center; max-width: 580px; margin: 0 auto 4.5rem; }
+  .dicas-header .section-eyebrow { color: var(--azul-medio); }
+  .dicas-header .section-title { color: var(--cinza-texto); }
+  .dicas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .dica-card { background: var(--branco); border: 2px solid var(--verde-claro); border-radius: 24px; padding: 2rem; transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .dica-card:hover { box-shadow: 0 10px 36px rgba(46,189,114,0.15); transform: translateY(-5px); }
+  .dica-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--verde-medio); border-radius: 4px 4px 0 0; }
+  .dica-card.azul { border-color: var(--azul-claro); }
+  .dica-card.azul::before { background: var(--azul-medio); }
+  .dica-numero { font-family: 'Baloo 2', cursive; font-size: 3.5rem; font-weight: 900; color: var(--verde-palido); line-height: 1; margin-bottom: 0.5rem; user-select: none; }
+  .dica-card.azul .dica-numero { color: var(--azul-palido); }
+  .dica-titulo { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 700; color: var(--verde-escuro); margin-bottom: 0.75rem; line-height: 1.3; }
+  .dica-card.azul .dica-titulo { color: var(--azul-escuro); }
+  .dica-texto { font-size: 0.92rem; line-height: 1.7; color: var(--cinza-muted); font-weight: 600; }
+
+  /* ─── SEÇÃO COLETA / PERSONAGENS ─── */
+  .section-coleta { background: var(--azul-palido); padding: 5rem 5%; }
+  .coleta-header { text-align: center; max-width: 620px; margin: 0 auto 1rem; }
+  .coleta-header .section-eyebrow { color: var(--azul-medio); }
+  .coleta-header .section-title { color: var(--cinza-texto); margin-bottom: 0.75rem; }
+  .coleta-header p { font-size: 1rem; line-height: 1.7; color: var(--cinza-muted); font-weight: 600; margin-bottom: 1rem; }
+  .coleta-cta-wrap { text-align: center; margin-bottom: 2.5rem; }
+
+  .grupo-label { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin: 2rem auto 1rem; padding-left: 0.75rem; border-left: 4px solid currentColor; max-width: 1100px; display: block; }
+  .grupo-label.heroi { color: #1a7a4a; border-color: #2ebd72; }
+  .grupo-label.vilao { color: #a32d2d; border-color: #e24b4a; }
+  .grupo-label.anti  { color: #854f0b; border-color: #ef9f27; }
+
+  .personagens-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; max-width: 1100px; margin: 0 auto; }
+
+  .p-card { background: var(--branco); border-radius: 20px; padding: 1.25rem 1rem; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center; border: 2px solid transparent; }
+  .p-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+  .p-card.heroi { border-top: 4px solid #2ebd72; }
+  .p-card.vilao { border-top: 4px solid #e24b4a; }
+  .p-card.anti  { border-top: 4px solid #ef9f27; }
+  .p-card.falando { box-shadow: 0 0 0 3px #2ebd72; }
+  .p-card.vilao.falando { box-shadow: 0 0 0 3px #e24b4a; }
+  .p-card.anti.falando  { box-shadow: 0 0 0 3px #ef9f27; }
+
+  .p-badge { font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 100px; display: inline-block; margin-bottom: 8px; }
+  .p-badge.heroi { background: #e6f9f0; color: #1a7a4a; }
+  .p-badge.vilao { background: #fcebeb; color: #a32d2d; }
+  .p-badge.anti  { background: #faeeda; color: #854f0b; }
+
+  .p-avatar { width: 90px; height: 100px; margin: 6px auto 10px; transition: transform 0.3s; }
+  .p-card:hover .p-avatar { transform: scale(1.06); }
+  .p-card.falando .p-avatar { animation: pbounce 0.5s ease infinite alternate; }
+  @keyframes pbounce { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+  .p-avatar svg { width: 100%; height: 100%; }
+
+  .p-nome { font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 800; color: var(--cinza-texto); }
+  .p-tipo { font-size: 0.78rem; color: var(--cinza-muted); font-weight: 600; margin-bottom: 8px; }
+
+  .p-btn { background: var(--fundo); border: 2px solid var(--azul-claro); color: var(--cinza-texto); padding: 5px 14px; border-radius: 100px; font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 800; cursor: pointer; width: 100%; transition: background 0.2s, border-color 0.2s; }
+  .p-btn:hover { background: var(--azul-palido); border-color: var(--azul-medio); }
+  .p-btn.ativo { background: #2ebd72; border-color: #2ebd72; color: white; }
+  .p-card.vilao .p-btn.ativo { background: #e24b4a; border-color: #e24b4a; }
+  .p-card.anti .p-btn.ativo  { background: #ef9f27; border-color: #ef9f27; }
+
+  .fala-box { max-width: 1100px; margin: 1.5rem auto 0; background: var(--branco); border-radius: 20px; padding: 1.5rem; border: 2px solid var(--azul-claro); display: flex; gap: 1.25rem; align-items: flex-start; min-height: 90px; transition: opacity 0.3s; }
+  .fala-avatar-box { width: 64px; height: 72px; flex-shrink: 0; }
+  .fala-avatar-box svg { width: 100%; height: 100%; }
+  .fala-nome-box { font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+  .fala-nome-box.heroi { color: #1a7a4a; }
+  .fala-nome-box.vilao { color: #a32d2d; }
+  .fala-nome-box.anti  { color: #854f0b; }
+  .fala-texto-box { font-size: 0.95rem; line-height: 1.6; color: var(--cinza-texto); font-weight: 600; font-style: italic; }
+  .fala-placeholder { font-size: 0.95rem; color: var(--cinza-muted); font-weight: 600; align-self: center; flex: 1; text-align: center; }
+
+  .ondinha { display: flex; gap: 3px; margin-top: 8px; }
+  .ondinha span { width: 4px; height: 14px; border-radius: 2px; background: #2ebd72; animation: onda 0.8s ease infinite; }
+  .ondinha span:nth-child(2) { animation-delay: 0.15s; }
+  .ondinha span:nth-child(3) { animation-delay: 0.3s; }
+  .ondinha.vilao span { background: #e24b4a; }
+  .ondinha.anti span  { background: #ef9f27; }
+  @keyframes onda { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1); } }
+
+  .aviso-voz { text-align: center; font-size: 0.8rem; color: var(--cinza-muted); font-weight: 600; margin-top: 1rem; }
+
+  /* ─── SEÇÃO CONTATO ─── */
+  .section-contato { padding: 7rem 5%; background: var(--fundo2); }
+  .contato-inner { max-width: 680px; margin: 0 auto; }
+  .contato-header { text-align: center; margin-bottom: 3rem; }
+  .contato-header .section-eyebrow { color: var(--verde-medio); }
+  .contato-header .section-title { color: var(--cinza-texto); margin-bottom: 0.75rem; }
+  .contato-header p { font-size: 1rem; line-height: 1.7; color: var(--cinza-muted); font-weight: 600; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.85rem; font-weight: 800; color: var(--cinza-texto); }
+  .form-group input, .form-group select, .form-group textarea { font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--cinza-texto); background: var(--branco); border: 2px solid var(--verde-claro); border-radius: 12px; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--verde-medio); box-shadow: 0 0 0 3px rgba(46,189,114,0.15); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-submit { margin-top: 1.5rem; text-align: center; }
+  .btn-submit { background: var(--verde-medio); color: var(--branco); border: none; padding: 0.9rem 2.5rem; border-radius: 100px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(46,189,114,0.3); }
+  .btn-submit:hover { background: var(--verde-escuro); transform: translateY(-2px); }
+  .form-msg { margin-top: 1.25rem; padding: 1rem 1.25rem; border-radius: 12px; font-size: 0.9rem; font-weight: 700; text-align: center; display: none; }
+  .form-msg.sucesso { background: var(--verde-palido); color: var(--verde-escuro); border: 2px solid var(--verde-claro); display: block; }
+  .form-msg.erro { background: #fff0f0; color: #a32d2d; border: 2px solid #f09595; display: block; }
+
+  /* ─── CTA ─── */
+  .section-cta { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--verde-escuro) 100%); padding: 7rem 5%; text-align: center; position: relative; overflow: hidden; }
+  .section-cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70vw; height: 70vw; border-radius: 50%; border: 2px solid rgba(255,255,255,0.06); pointer-events: none; }
+  .cta-inner { position: relative; max-width: 640px; margin: 0 auto; }
+  .section-cta .section-title { color: var(--branco); margin-bottom: 1.25rem; }
+  .section-cta p { font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; font-weight: 600; }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white { background: var(--branco); color: var(--verde-escuro); padding: 0.9rem 2.2rem; border-radius: 100px; font-size: 1rem; font-weight: 800; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-white:hover { background: var(--verde-palido); transform: translateY(-2px); }
+  .btn-outline-white { border: 2.5px solid rgba(255,255,255,0.6); color: var(--branco); padding: 0.9rem 2.2rem; border-radius: 100px; font-size: 1rem; font-weight: 800; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+  /* ─── SEÇÃO RECEITA ─── */
+  .section-receita { background: var(--fundo2); padding: 4rem 5%; }
+  .receita-inner { max-width: 860px; margin: 0 auto; background: var(--branco); border: 2px solid var(--verde-claro); border-radius: 24px; padding: 2.5rem 2rem; box-shadow: 0 4px 20px rgba(46,189,114,0.08); }
+  .receita-topo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .receita-badge { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--verde-escuro); background: var(--verde-palido); border: 1.5px solid var(--verde-claro); padding: 0.3rem 0.85rem; border-radius: 100px; white-space: nowrap; }
+  .receita-titulo { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; color: var(--cinza-texto); margin-bottom: 0.4rem; }
+  .receita-sub { font-size: 0.9rem; color: var(--cinza-muted); font-weight: 600; margin-bottom: 1.5rem; line-height: 1.6; }
+  .receita-intro { font-size: 0.92rem; color: var(--cinza-muted); font-weight: 600; line-height: 1.7; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1.5px solid var(--verde-claro); }
+  .receita-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
+  .receita-col-titulo { font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 800; color: var(--verde-escuro); margin-bottom: 0.75rem; }
+  .receita-lista { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .receita-lista li { font-size: 0.88rem; font-weight: 600; color: var(--cinza-texto); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+  .receita-lista li::before { content: '•'; position: absolute; left: 0; color: var(--verde-medio); font-weight: 900; }
+  .receita-passos { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; counter-reset: passo; }
+  .receita-passos li { font-size: 0.88rem; font-weight: 600; color: var(--cinza-texto); padding-left: 1.8rem; position: relative; line-height: 1.5; counter-increment: passo; }
+  .receita-passos li::before { content: counter(passo); position: absolute; left: 0; width: 1.3rem; height: 1.3rem; background: var(--verde-medio); color: white; border-radius: 50%; font-size: 0.72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; top: 0.1rem; }
+  .receita-dicas { background: var(--fundo); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; border-left: 4px solid var(--azul-medio); }
+  .receita-dicas-titulo { font-size: 0.82rem; font-weight: 800; color: var(--azul-escuro); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .receita-dicas ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .receita-dicas ul li { font-size: 0.85rem; font-weight: 600; color: var(--cinza-muted); padding-left: 1rem; position: relative; }
+  .receita-dicas ul li::before { content: '→'; position: absolute; left: 0; color: var(--azul-medio); }
+  .receita-fonte { font-size: 0.78rem; color: var(--cinza-muted); font-weight: 600; text-align: right; }
+  .receita-fonte a { color: var(--azul-medio); text-decoration: none; }
+  .receita-fonte a:hover { text-decoration: underline; }
+  @media (max-width: 768px) { .receita-grid { grid-template-columns: 1fr; gap: 1.25rem; } .section-receita { padding: 3rem 5%; } }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--cinza-texto); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 5%; font-size: 0.85rem; font-weight: 600; }
+  footer strong { color: var(--verde-claro); font-weight: 800; }
+
+  /* ─── ANIMAÇÕES ─── */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+    .hero-visual { display: none; }
+    nav ul { display: none; }
+    .section-dados, .section-dicas, .section-cta, .section-coleta, .section-contato { padding: 4rem 5%; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Mundo<span>Plastificado</span></a>
+  <ul>
+    <li><a href="#dados">O Problema</a></li>
+    <li><a href="#dicas">O que Fazer</a></li>
+    <li><a href="#coleta">Coleta Seletiva</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#cta" class="nav-cta">Agir Agora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">🌿 Ação pelo Clima</div>
+    <h1>
+      A Terra não<br>
+      espera.<br>
+      <em>Nós também</em><br>
+      não podemos.
+    </h1>
+    <p>
+      Cada peça de plástico descartada incorretamente contribui para a crise climática.
+      Pequenas mudanças de hábito, somadas, criam um impacto real e duradouro.
+    </p>
+    <div class="hero-btns">
+      <a href="#dicas" class="btn-primary">Ver as Dicas</a>
+      <a href="#dados" class="btn-secondary">Entender o Problema</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-stat-card">
+      <div class="stat-icon">🌊</div>
+      <div class="stat-number">11M</div>
+      <div class="stat-label">toneladas de plástico vão<br>para os oceanos todo ano</div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-number blue">450</div>
+      <div class="stat-label">anos para uma garrafa<br>PET se decompor na natureza</div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-icon">♻️</div>
+      <div class="stat-number">9%</div>
+      <div class="stat-label">de todo o plástico produzido<br>é efetivamente reciclado</div>
+    </div>
+  </div>
+</section>
+
+<!-- DADOS -->
+<section id="dados" class="section-dados">
+  <div class="dados-header fade-up">
+    <span class="section-eyebrow">Os Números da Crise</span>
+    <h2 class="section-title">O plástico e o clima estão conectados</h2>
+    <p class="section-sub">Produzir, incinerar e descartar plástico libera CO₂ e metano. O problema começa antes mesmo do lixo.</p>
+  </div>
+  <div class="dados-grid">
+    <div class="dado-card fade-up"><div class="dado-num">400M</div><div class="dado-desc">toneladas de plástico são produzidas por ano no mundo</div></div>
+    <div class="dado-card fade-up"><div class="dado-num azul">850M</div><div class="dado-desc">toneladas de CO₂ emitidas pela indústria do plástico anualmente</div></div>
+    <div class="dado-card fade-up"><div class="dado-num">1 em 3</div><div class="dado-desc">peixes no oceano já contêm microplásticos em seu corpo</div></div>
+    <div class="dado-card fade-up"><div class="dado-num azul">2050</div><div class="dado-desc">pode haver mais plástico do que peixes nos oceanos se nada mudar</div></div>
+  </div>
+</section>
+
+<!-- DICAS -->
+<section id="dicas" class="section-dicas">
+  <div class="dicas-header fade-up">
+    <span class="section-eyebrow">O que você pode fazer</span>
+    <h2 class="section-title">Hábitos que mudam o planeta</h2>
+    <p class="section-sub" style="color: var(--cinza-muted); font-size: 1rem; line-height: 1.7; font-weight: 600;">Você não precisa ser perfeito. Precisa começar.</p>
+  </div>
+  <div class="dicas-grid">
+    <div class="dica-card fade-up"><div class="dica-numero">01</div><h3 class="dica-titulo">Recuse o plástico descartável</h3><p class="dica-texto">Canudos, sacolinhas, copos e talheres descartáveis — diga não antes de receber. Carregue sua própria garrafa e bolsa reutilizável.</p></div>
+    <div class="dica-card azul fade-up"><div class="dica-numero">02</div><h3 class="dica-titulo">Escolha produtos a granel</h3><p class="dica-texto">Feiras e lojas a granel permitem comprar com sua própria embalagem. Menos embalagem, menos lixo, menos custo — e o produto costuma ser mais fresco.</p></div>
+    <div class="dica-card fade-up"><div class="dica-numero">03</div><h3 class="dica-titulo">Troque por alternativas sólidas</h3><p class="dica-texto">Shampoo em barra, sabonetes, dentifrícios em pó e cosméticos sólidos eliminam dezenas de embalagens plásticas por ano.</p></div>
+    <div class="dica-card azul fade-up"><div class="dica-numero">04</div><h3 class="dica-titulo">Organize a coleta em casa</h3><p class="dica-texto">Separe resíduos secos dos orgânicos. Limpe as embalagens antes de descartar. Um resíduo contaminado invalida um lote inteiro na usina de reciclagem.</p></div>
+    <div class="dica-card fade-up"><div class="dica-numero">05</div><h3 class="dica-titulo">Consuma menos, consuma melhor</h3><p class="dica-texto">Compre produtos de marcas que usam embalagens recicladas ou recicláveis. O seu dinheiro é um voto por um modelo de produção mais limpo.</p></div>
+    <div class="dica-card azul fade-up"><div class="dica-numero">06</div><h3 class="dica-titulo">Espalhe a palavra</h3><p class="dica-texto">Compartilhe informação com amigos e família. Participe de mutirões de limpeza. O engajamento coletivo amplifica cada ação individual.</p></div>
+  </div>
+</section>
+
+<!-- COLETA SELETIVA — substituída pelos personagens anime com voz -->
+<section id="coleta" class="section-coleta">
+  <div class="coleta-header fade-up">
+    <span class="section-eyebrow">Coleta Seletiva</span>
+    <h2 class="section-title">Os guardiões (e vilões) do lixo!</h2>
+    <p>A coleta seletiva só funciona se cada material for para o recipiente correto. Conheça os personagens e ouça o que eles têm a dizer!</p>
+  </div>
+  <div class="coleta-cta-wrap">
+    <a href="#cta" class="btn-primary">Quero agir agora</a>
+  </div>
+
+  <span class="grupo-label heroi">⚔️ Heróis</span>
+  <div class="personagens-grid" id="herois"></div>
+
+  <span class="grupo-label vilao">💀 Vilões</span>
+  <div class="personagens-grid" id="viloes"></div>
+
+  <span class="grupo-label anti">⚡ Anti-heróis</span>
+  <div class="personagens-grid" id="antis"></div>
+
+  <div class="fala-box" id="fala-box">
+    <span class="fala-placeholder">👆 Clique em um personagem para ouvir sua voz!</span>
+  </div>
+  <p class="aviso-voz">🔊 As vozes usam a tecnologia de síntese de voz do seu navegador</p>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="section-contato">
+  <div class="contato-inner">
+    <div class="contato-header fade-up">
+      <span class="section-eyebrow">Fale com a Gente</span>
+      <h2 class="section-title">Entre em contato</h2>
+      <p>Tem uma dúvida, sugestão ou quer colaborar com o projeto? Preencha o formulário abaixo e entraremos em contato.</p>
+    </div>
+    <form id="form-contato" action="contato.php" method="POST" class="fade-up">
+      <div class="form-grid">
+        <div class="form-group"><label for="nome">Nome completo</label><input type="text" id="nome" name="nome" placeholder="Seu nome" required></div>
+        <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="seu@email.com" required></div>
+        <div class="form-group full">
+          <label for="assunto">Assunto</label>
+          <select id="assunto" name="assunto" required>
+            <option value="" disabled selected>Selecione um assunto</option>
+            <option value="Dúvida sobre coleta seletiva">Dúvida sobre coleta seletiva</option>
+            <option value="Quero colaborar com o projeto">Quero colaborar com o projeto</option>
+            <option value="Sugestão de conteúdo">Sugestão de conteúdo</option>
+            <option value="Parceria ou divulgação">Parceria ou divulgação</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-group full"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea></div>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-submit" id="btn-enviar"><span>Enviar mensagem</span><span>🌿</span></button>
+      </div>
+      <div id="form-msg" class="form-msg"></div>
+    </form>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="section-cta">
+  <div class="cta-inner">
+    <span class="section-eyebrow" style="color: var(--verde-claro);">Sua vez</span>
+    <h2 class="section-title fade-up">Cada escolha conta.<br>A sua também.</h2>
+    <p class="fade-up">
+      A mudança climática parece grande demais para uma pessoa resolver.
+      Mas bilhões de pequenas escolhas diárias moldaram o problema —
+      e podem moldar a solução.
+    </p>
+    <div class="cta-btns fade-up">
+      <a href="#dicas" class="btn-white">Ver as dicas</a>
+      <a href="#coleta" class="btn-outline-white">Guia de coleta</a>
+    </div>
+  </div>
+</section>
+
+<!-- RECEITA -->
+<section class="section-receita">
+  <div class="receita-inner fade-up">
+    <div class="receita-topo">
+      <span class="receita-badge">🌱 Faça em Casa</span>
+    </div>
+    <h2 class="receita-titulo">Papel Biodegradável com Sementes</h2>
+    <p class="receita-sub">Uma atividade sustentável para fazer em casa — o papel que você planta e vira jardim!</p>
+    <p class="receita-intro">Fazer papel biodegradável com sementes é uma forma criativa de reciclar papel em casa, criando folhas que podem ser plantadas para germinar plantas ou temperos. O processo envolve criar uma polpa de papel, adicionar sementes, moldar, secar e plantar em terra fértil.</p>
+
+    <div class="receita-grid">
+      <div>
+        <div class="receita-col-titulo">📦 Materiais necessários</div>
+        <ul class="receita-lista">
+          <li>Papel usado: papéis brancos, papel toalha, jornal ou caixas de ovo (evite papéis plastificados)</li>
+          <li>Liquidificador ou mixer</li>
+          <li>Água</li>
+          <li>Sementes pequenas: manjericão, rúcula, cenoura ou flores</li>
+          <li>Moldura com tela (filtro de cozinha, tule ou voal)</li>
+          <li>Bacia grande</li>
+          <li>Panos ou TNT para secagem</li>
+        </ul>
+      </div>
+      <div>
+        <div class="receita-col-titulo">👣 Passo a passo</div>
+        <ol class="receita-passos">
+          <li>Rasgue o papel em pedaços e deixe de molho em água por 24 horas. Bata no liquidificador com bastante água até virar uma pasta homogênea.</li>
+          <li>Despeje a pasta na bacia. Adicione as sementes e misture com as mãos. Não bata as sementes no liquidificador para não danificá-las.</li>
+          <li>Mergulhe a moldura com tela na bacia pegando a polpa. Levante e espere a água escorrer.</li>
+          <li>Vire a tela sobre um pano seco. Pressione com esponja para tirar o excesso de água. Seque ao sol por 1 a 2 dias.</li>
+          <li>Pronto! Para plantar, coloque o papel sobre a terra, cubra com uma camada fina de terra e regue diariamente. 🌿</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="receita-dicas">
+      <div class="receita-dicas-titulo">💡 Dicas para melhor resultado</div>
+      <ul>
+        <li>Use sementes menores — germinam mais facilmente e não atrapalham a textura do papel</li>
+        <li>Para um papel mais resistente, faça uma camada mais grossa de polpa</li>
+        <li>Não force a secagem com calor excessivo — pode queimar as sementes</li>
+        <li>Opcional: adicione corantes naturais como açafrão ou urucum para dar cor ao papel</li>
+      </ul>
+    </div>
+    <p class="receita-fonte">Fonte: <a href="https://www.youtube.com/shorts/axp-uduCfbg" target="_blank">Manual do Mundo — YouTube</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Feito com cuidado pelo planeta 🌍 &nbsp;|&nbsp; <strong>MundoPlastificado</strong> &nbsp;|&nbsp; Conteúdo educativo para projeto feito por alunos da UNIP Marquês, primeiro semestre de SI, 2026</p>
+</footer>
+
+<script>
+// ─── SVGs ─────────────────────────────────────────────────────────────
+function svgPapelino() { return `<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="75" rx="22" ry="8" fill="#b0c4d8" opacity="0.4"/><rect x="18" y="32" width="44" height="48" rx="6" fill="#e8f4ff" stroke="#90b8d8" stroke-width="1.5"/><rect x="52" y="36" width="10" height="40" rx="4" fill="#b8d4e8" opacity="0.6"/><polygon points="52,32 62,32 62,42" fill="#c8dff0" stroke="#90b8d8" stroke-width="1"/><line x1="25" y1="50" x2="55" y2="50" stroke="#90b8d8" stroke-width="1.2" opacity="0.7"/><line x1="25" y1="57" x2="55" y2="57" stroke="#90b8d8" stroke-width="1.2" opacity="0.7"/><line x1="25" y1="64" x2="45" y2="64" stroke="#90b8d8" stroke-width="1.2" opacity="0.7"/><ellipse cx="40" cy="22" rx="16" ry="17" fill="#ffe8c8" stroke="#d4a06a" stroke-width="1.5"/><ellipse cx="47" cy="22" rx="9" ry="14" fill="#f0c898" opacity="0.5"/><ellipse cx="33" cy="20" rx="5" ry="6" fill="#1a3a5c"/><ellipse cx="47" cy="20" rx="5" ry="6" fill="#1a3a5c"/><ellipse cx="33" cy="19" rx="3" ry="4" fill="#2a6aac"/><ellipse cx="47" cy="19" rx="3" ry="4" fill="#2a6aac"/><circle cx="31" cy="17" r="1.5" fill="white"/><circle cx="45" cy="17" r="1.5" fill="white"/><path d="M28 13 Q33 11 38 13" stroke="#8a6040" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M42 13 Q47 11 52 13" stroke="#8a6040" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M35 27 Q40 31 45 27" stroke="#d46040" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M24 16 Q26 6 40 5 Q54 6 56 16" fill="#8ab0d0" stroke="#6090b0" stroke-width="1"/><text x="32" y="46" font-size="10" fill="#2a6aac" font-weight="bold">♻</text><ellipse cx="14" cy="52" rx="5" ry="12" fill="#ffe8c8" stroke="#d4a06a" stroke-width="1.2" transform="rotate(-10 14 52)"/><ellipse cx="66" cy="52" rx="5" ry="12" fill="#ffe8c8" stroke="#d4a06a" stroke-width="1.2" transform="rotate(10 66 52)"/><rect x="24" y="76" width="10" height="12" rx="4" fill="#6090b0" stroke="#4070a0" stroke-width="1"/><rect x="46" y="76" width="10" height="12" rx="4" fill="#6090b0" stroke="#4070a0" stroke-width="1"/></svg>`; }
+function svgFerrao() { return `<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="77" rx="22" ry="6" fill="#8a8a8a" opacity="0.3"/><rect x="16" y="32" width="48" height="46" rx="8" fill="#c8d8e8" stroke="#8090a8" stroke-width="2"/><rect x="16" y="44" width="48" height="5" fill="#a0b8d0" opacity="0.7"/><rect x="16" y="60" width="48" height="5" fill="#a0b8d0" opacity="0.7"/><rect x="20" y="34" width="8" height="40" rx="3" fill="white" opacity="0.25"/><rect x="54" y="34" width="10" height="42" rx="6" fill="#8090a8" opacity="0.4"/><ellipse cx="40" cy="32" rx="24" ry="6" fill="#d8e8f8" stroke="#8090a8" stroke-width="2"/><ellipse cx="40" cy="18" rx="17" ry="16" fill="#ffe0b0" stroke="#c89060" stroke-width="1.5"/><ellipse cx="32" cy="17" rx="5" ry="5" fill="#1a2a3a"/><ellipse cx="48" cy="17" rx="5" ry="5" fill="#1a2a3a"/><ellipse cx="32" cy="16" rx="3" ry="3.5" fill="#c0a020"/><ellipse cx="48" cy="16" rx="3" ry="3.5" fill="#c0a020"/><circle cx="30" cy="14" r="1.5" fill="white"/><circle cx="46" cy="14" r="1.5" fill="white"/><rect x="27" y="10" width="10" height="2.5" rx="1.2" fill="#6a4020" transform="rotate(-5 32 11)"/><rect x="43" y="10" width="10" height="2.5" rx="1.2" fill="#6a4020" transform="rotate(5 48 11)"/><path d="M34 24 Q40 27 46 24" stroke="#c06040" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M23 14 Q25 2 40 2 Q55 2 57 14" fill="#c0a020" stroke="#a08010" stroke-width="1"/><path d="M23 14 L19 6 L25 11" fill="#c0a020"/><path d="M57 14 L61 6 L55 11" fill="#c0a020"/><text x="33" y="55" font-size="12" fill="#c0a020">★</text><ellipse cx="12" cy="52" rx="6" ry="13" fill="#ffe0b0" stroke="#c89060" stroke-width="1.2" transform="rotate(-8 12 52)"/><ellipse cx="68" cy="52" rx="6" ry="13" fill="#ffe0b0" stroke="#c89060" stroke-width="1.2" transform="rotate(8 68 52)"/><rect x="22" y="75" width="12" height="13" rx="4" fill="#8090a8" stroke="#6070a0" stroke-width="1"/><rect x="46" y="75" width="12" height="13" rx="4" fill="#8090a8" stroke="#6070a0" stroke-width="1"/></svg>`; }
+function svgPlastao() { return `<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="78" rx="24" ry="7" fill="#a020a0" opacity="0.25"/><rect x="14" y="30" width="52" height="50" rx="10" fill="#e060e0" stroke="#a020a0" stroke-width="2"/><ellipse cx="28" cy="50" rx="8" ry="10" fill="#c000c0" opacity="0.4"/><ellipse cx="52" cy="60" rx="6" ry="8" fill="#c000c0" opacity="0.35"/><rect x="18" y="33" width="7" height="44" rx="3" fill="white" opacity="0.18"/><rect x="54" y="33" width="10" height="44" rx="6" fill="#900090" opacity="0.35"/><rect x="28" y="24" width="24" height="10" rx="4" fill="#c030c0" stroke="#a020a0" stroke-width="1.5"/><ellipse cx="40" cy="16" rx="17" ry="15" fill="#ffd0f8" stroke="#b040b0" stroke-width="1.5"/><ellipse cx="32" cy="14" rx="5.5" ry="5" fill="#1a001a"/><ellipse cx="48" cy="14" rx="5.5" ry="5" fill="#1a001a"/><ellipse cx="32" cy="13" rx="3" ry="3.5" fill="#c000c0"/><ellipse cx="48" cy="13" rx="3" ry="3.5" fill="#c000c0"/><circle cx="30" cy="11" r="1.5" fill="white"/><circle cx="46" cy="11" r="1.5" fill="white"/><rect x="27" y="8" width="11" height="2.5" rx="1" fill="#6a006a" transform="rotate(15 33 9)"/><rect x="42" y="8" width="11" height="2.5" rx="1" fill="#6a006a" transform="rotate(-15 47 9)"/><path d="M30 22 Q40 30 50 22" stroke="#c000c0" stroke-width="2" fill="#ffd0f8" stroke-linecap="round"/><rect x="36" y="23" width="3" height="4" rx="1" fill="white"/><rect x="41" y="23" width="3" height="4" rx="1" fill="white"/><path d="M23 11 Q27 -2 40 0 Q53 -2 57 11" fill="#900090" stroke="#700070" stroke-width="1"/><path d="M23 11 L18 2 L27 8" fill="#900090"/><path d="M57 11 L62 2 L53 8" fill="#900090"/><text x="32" y="55" font-size="14" fill="#700070">☠</text><ellipse cx="10" cy="52" rx="6" ry="14" fill="#ffd0f8" stroke="#b040b0" stroke-width="1.2" transform="rotate(-12 10 52)"/><ellipse cx="70" cy="52" rx="6" ry="14" fill="#ffd0f8" stroke="#b040b0" stroke-width="1.2" transform="rotate(12 70 52)"/><rect x="21" y="77" width="13" height="12" rx="4" fill="#a020a0" stroke="#800080" stroke-width="1"/><rect x="46" y="77" width="13" height="12" rx="4" fill="#a020a0" stroke="#800080" stroke-width="1"/></svg>`; }
+function svgRejeito() { return `<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="78" rx="23" ry="6" fill="#4a4a4a" opacity="0.3"/><path d="M14 38 Q12 50 15 65 Q20 80 40 80 Q60 80 65 65 Q68 50 66 38 Q60 30 40 30 Q20 30 14 38Z" fill="#5a5a5a" stroke="#3a3a3a" stroke-width="2"/><ellipse cx="30" cy="52" rx="7" ry="9" fill="#3a3a3a" opacity="0.5"/><ellipse cx="54" cy="60" rx="5" ry="7" fill="#3a3a3a" opacity="0.4"/><ellipse cx="40" cy="18" rx="17" ry="15" fill="#c8c0b8" stroke="#8a8080" stroke-width="1.5"/><ellipse cx="32" cy="16" rx="5.5" ry="5" fill="#1a1a1a"/><ellipse cx="48" cy="16" rx="5.5" ry="5" fill="#1a1a1a"/><ellipse cx="32" cy="15" rx="2.5" ry="3" fill="#e04040"/><ellipse cx="48" cy="15" rx="2.5" ry="3" fill="#e04040"/><circle cx="30" cy="13" r="1.2" fill="white"/><circle cx="46" cy="13" r="1.2" fill="white"/><rect x="27" y="9" width="11" height="2.5" rx="1" fill="#3a3030" transform="rotate(12 33 10)"/><rect x="42" y="9" width="11" height="2.5" rx="1" fill="#3a3030" transform="rotate(-12 47 10)"/><path d="M30 25 Q35 21 40 25 Q45 29 50 25" stroke="#5a4040" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M23 12 Q30 0 40 2 Q50 0 57 12" fill="#6a6060" stroke="#4a4040" stroke-width="1"/><path d="M23 12 L17 4 L25 9" fill="#6a6060"/><text x="33" y="57" font-size="12" fill="#3a3a3a">⚠</text><path d="M14 45 Q6 50 8 60 Q10 66 16 64" fill="#c8c0b8" stroke="#8a8080" stroke-width="1.2"/><path d="M66 45 Q74 50 72 60 Q70 66 64 64" fill="#c8c0b8" stroke="#8a8080" stroke-width="1.2"/></svg>`; }
+function svgCristalino() { return `<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="78" rx="20" ry="6" fill="#20a060" opacity="0.25"/><polygon points="40,30 62,38 62,68 40,78 18,68 18,38" fill="#a0e8c0" stroke="#20a060" stroke-width="2" opacity="0.85"/><line x1="24" y1="36" x2="24" y2="70" stroke="white" stroke-width="6" opacity="0.15" stroke-linecap="round"/><polygon points="20,40 32,35 32,50 20,55" fill="white" opacity="0.2"/><ellipse cx="40" cy="18" rx="16" ry="15" fill="#d0f8e8" stroke="#20a060" stroke-width="1.5"/><ellipse cx="32" cy="16" rx="5" ry="5.5" fill="#0a3a2a"/><ellipse cx="48" cy="16" rx="5" ry="5.5" fill="#0a3a2a"/><ellipse cx="32" cy="15" rx="3" ry="3.5" fill="#20c080"/><ellipse cx="48" cy="15" rx="3" ry="3.5" fill="#20c080"/><circle cx="30" cy="13" r="1.5" fill="white"/><circle cx="46" cy="13" r="1.5" fill="white"/><path d="M27 10 Q32 8 37 10" stroke="#0a6040" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M43 8 Q48 10 53 8" stroke="#0a6040" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M34 25 Q40 28 46 25" stroke="#0a8050" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M24 12 Q28 2 40 3 Q52 2 56 12" fill="#40c090" stroke="#20a070" stroke-width="1"/><path d="M30 3 L28 -3 L33 1" fill="#40c090"/><path d="M40 3 L40 -4 L43 1" fill="#40c090"/><polygon points="40,42 45,50 40,58 35,50" fill="#a0f0d0" stroke="#20a060" stroke-width="1.2" opacity="0.9"/><ellipse cx="13" cy="52" rx="5" ry="13" fill="#d0f8e8" stroke="#20a060" stroke-width="1.2" transform="rotate(-8 13 52)"/><ellipse cx="67" cy="52" rx="5" ry="13" fill="#d0f8e8" stroke="#20a060" stroke-width="1.2" transform="rotate(8 67 52)"/><rect x="23" y="75" width="11" height="13" rx="4" fill="#20a060" stroke="#108040" stroke-width="1"/><rect x="46" y="75" width="11" height="13" rx="4" fill="#20a060" stroke="#108040" stroke-width="1"/></svg>`; }
+function svgBiozao() { return `<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="78" rx="22" ry="6" fill="#8a5020" opacity="0.25"/><ellipse cx="40" cy="56" rx="26" ry="24" fill="#9a7040" stroke="#7a5020" stroke-width="2"/><ellipse cx="30" cy="50" rx="8" ry="10" fill="#7a5820" opacity="0.45"/><path d="M28 33 Q26 24 30 20" stroke="#2a9a40" stroke-width="2.5" fill="none" stroke-linecap="round"/><ellipse cx="30" cy="19" rx="5" ry="7" fill="#2a9a40" stroke="#1a7a30" stroke-width="1"/><path d="M52 34 Q55 25 51 21" stroke="#2a9a40" stroke-width="2.5" fill="none" stroke-linecap="round"/><ellipse cx="51" cy="20" rx="5" ry="7" fill="#2a9a40" stroke="#1a7a30" stroke-width="1" transform="rotate(15 51 20)"/><ellipse cx="40" cy="19" rx="17" ry="16" fill="#ffe8c0" stroke="#c09060" stroke-width="1.5"/><ellipse cx="32" cy="17" rx="5" ry="5.5" fill="#1a1a0a"/><ellipse cx="48" cy="17" rx="5" ry="5.5" fill="#1a1a0a"/><ellipse cx="32" cy="16" rx="3" ry="3.5" fill="#8a6020"/><ellipse cx="48" cy="16" rx="3" ry="3.5" fill="#2a9a40"/><circle cx="30" cy="14" r="1.5" fill="white"/><circle cx="46" cy="14" r="1.5" fill="white"/><path d="M27 11 Q32 9 37 11" stroke="#7a5020" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M33 26 Q37 28 43 25" stroke="#a06030" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M23 13 Q25 3 40 2 Q55 3 57 13" fill="#8a6020" stroke="#6a4010" stroke-width="1"/><path d="M23 13 L18 5 L26 10" fill="#8a6020"/><path d="M14 48 Q6 54 9 63 Q12 68 17 65" fill="#ffe8c0" stroke="#c09060" stroke-width="1.2"/><path d="M66 48 Q74 54 71 63 Q68 68 63 65" fill="#ffe8c0" stroke="#c09060" stroke-width="1.2"/><rect x="22" y="76" width="12" height="12" rx="4" fill="#7a5020" stroke="#5a3010" stroke-width="1"/><rect x="46" y="76" width="12" height="12" rx="4" fill="#7a5020" stroke="#5a3010" stroke-width="1"/></svg>`; }
+
+// ─── Dados ────────────────────────────────────────────────────────────
+const personagens = [
+  { id:'papelino', nome:'Papelino', tipo:'Papel ♻️', classe:'heroi', badge:'🦸 Herói', svg:svgPapelino, voz:{pitch:1.3,rate:1.0}, falas:['Ei! Eu sou o Papelino! Se você me jogar no lixo azul, posso virar livros, cadernos e caixas de novo!','Já fui uma árvore enorme! Por favor, me recicle para que eu não vire lixo para sempre.','Um papel reciclado salva uma árvore inteira. Você já salvou a sua hoje?'] },
+  { id:'ferrao', nome:'Ferrão', tipo:'Metal 🛡️', classe:'heroi', badge:'🦸 Herói', svg:svgFerrao, voz:{pitch:0.8,rate:0.9}, falas:['Sou o Ferrão! Feito de aço e alumínio! Posso ser reciclado infinitas vezes sem perder minha força! Lixo amarelo, vai!','Uma lata de alumínio reciclada economiza energia para ligar uma televisão por três horas!','Sou eterno! Mas só se você me reciclar corretamente!'] },
+  { id:'plastao', nome:'Plastão', tipo:'Plástico ☠️', classe:'vilao', badge:'😈 Vilão', svg:svgPlastao, voz:{pitch:0.5,rate:0.85}, falas:['MUAHAHAHAHA! Sou o Plastão! Demoro quatrocentos anos para desaparecer! Já estou nos oceanos, nos peixes e até no seu sangue!','Sou feito de petróleo e não tenho vergonha nenhuma! Cada ano, onze milhões de toneladas de mim vão para os oceanos!','Vocês me criaram! Agora me aguentem! Mas ei... jogar no lixo vermelho ajuda um pouquinho. Só um pouquinho!'] },
+  { id:'rejeito', nome:'Rejeitão', tipo:'Rejeito 💀', classe:'vilao', badge:'😈 Vilão', svg:svgRejeito, voz:{pitch:0.4,rate:0.8}, falas:['Eu sou o Rejeitão. Fraldas, isopor, papel carbono... Tudo que não pode ser reciclado vira eu. E vou direto pro aterro.','Ninguém me quer. Ninguém me recicla. Mas o melhor jeito de me combater é consumir menos!','Quanto menos você comprar o que vira rejeito, menos eu apareço. Pense bem antes de comprar!'] },
+  { id:'cristalino', nome:'Cristalino', tipo:'Vidro ✨', classe:'anti', badge:'⚡ Anti-herói', svg:svgCristalino, voz:{pitch:1.1,rate:0.95}, falas:['Olá. Sou o Cristalino. Sou bonito e útil... mas demoro um milhão de anos para me decompor. Por favor, me recicle.','Posso ser perigoso se quebrado, mas sou cem por cento reciclável. Me coloque no lixo verde com muito carinho!','Já fui janela, garrafa, pote... e posso ser tudo isso de novo. Depende completamente de você!'] },
+  { id:'biozao', nome:'Biozão', tipo:'Orgânico 🌱', classe:'anti', badge:'⚡ Anti-herói', svg:svgBiozao, voz:{pitch:0.9,rate:1.0}, falas:['Ei! Sou o Biozão! Cascas, restos de comida e folhas! Posso virar adubo e nutrir plantas! Mas misturado com lixo seco, viro um problemão.','Separado no lixo marrom ou na composteira, viro composto e alimento a terra. A escolha é sua!','Decomponho rápido, mas só no lugar certo. Me bota na composteira ou no lixo marrom e eu faço maravilhas!'] }
+];
+
+// ─── Funções ──────────────────────────────────────────────────────────
+let cardAtual = null;
+
+function falarPersonagem(p, card) {
+  window.speechSynthesis.cancel();
+  if (cardAtual) {
+    cardAtual.classList.remove('falando');
+    const b = cardAtual.querySelector('.p-btn');
+    if (b) { b.classList.remove('ativo'); b.textContent = '🔊 Ouvir voz'; }
+  }
+  const falaTexto = p.falas[Math.floor(Math.random() * p.falas.length)];
+  const box = document.getElementById('fala-box');
+  box.style.opacity = '0';
+  setTimeout(() => {
+    box.innerHTML = `<div class="fala-avatar-box">${p.svg()}</div><div><div class="fala-nome-box ${p.classe}">${p.nome} — ${p.tipo}</div><div class="fala-texto-box">"${falaTexto}"</div><div class="ondinha ${p.classe}"><span></span><span></span><span></span></div></div>`;
+    box.style.opacity = '1';
+  }, 200);
+  card.classList.add('falando'); cardAtual = card;
+  const btn = card.querySelector('.p-btn');
+  btn.classList.add('ativo'); btn.textContent = '🔊 Falando...';
+  const utterance = new SpeechSynthesisUtterance(falaTexto);
+  utterance.lang = 'pt-BR'; utterance.pitch = p.voz.pitch; utterance.rate = p.voz.rate; utterance.volume = 1;
+  utterance.onend = () => { card.classList.remove('falando'); btn.classList.remove('ativo'); btn.textContent = '🔊 Ouvir voz'; };
+  window.speechSynthesis.speak(utterance);
+}
+
+function criarCardPersonagem(p) {
+  const div = document.createElement('div');
+  div.className = `p-card ${p.classe}`;
+  div.innerHTML = `<span class="p-badge ${p.classe}">${p.badge}</span><div class="p-avatar">${p.svg()}</div><div class="p-nome">${p.nome}</div><div class="p-tipo">${p.tipo}</div><button class="p-btn">🔊 Ouvir voz</button>`;
+  div.querySelector('.p-btn').addEventListener('click', () => falarPersonagem(p, div));
+  return div;
+}
+
+personagens.filter(p => p.classe==='heroi').forEach(p => document.getElementById('herois').appendChild(criarCardPersonagem(p)));
+personagens.filter(p => p.classe==='vilao').forEach(p => document.getElementById('viloes').appendChild(criarCardPersonagem(p)));
+personagens.filter(p => p.classe==='anti').forEach(p => document.getElementById('antis').appendChild(criarCardPersonagem(p)));
+
+// ─── Scroll animations ────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => { entry.target.classList.add('visible'); }, entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 100;
+  observer.observe(el);
+});
+
+// ─── Formulário ───────────────────────────────────────────────────────
+const form = document.getElementById('form-contato');
+const msg = document.getElementById('form-msg');
+const btn = document.getElementById('btn-enviar');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Enviando...';
+  try {
+    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+    if (res.ok) { msg.textContent = '✅ Mensagem enviada com sucesso!'; msg.className = 'form-msg sucesso'; form.reset(); }
+    else throw new Error();
+  } catch {
+    msg.textContent = '❌ Erro ao enviar. Tente novamente.';
+    msg.className = 'form-msg erro';
+  } finally {
+    btn.disabled = false;
+    btn.querySelector('span').textContent = 'Enviar mensagem';
+  }
+});
+</script>
+</body>
+</html>
